@@ -5,6 +5,8 @@
 /tmp
 /out-tsc
 /bazel-out
+# Ajout du répertoire release de electron au gitignore
+/release
 
 # Node
 /node_modules
@@ -40,3 +42,4 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+

@@ -1,0 +1,55 @@
+<ng-container *ngIf="config; else loading">
+    <div class="container">
+      <!-- Partie supérieure (80% de la hauteur) -->
+      <div class="top-section">
+        <!-- Zone média (80% de la largeur, en haut à gauche) -->
+        <div class="media-area">
+          <div class="media-container">
+            <ng-container *ngIf="isVideo(); else imageTemplate">
+              <video class="media" [src]="config.fichier" autoplay loop muted></video>
+            </ng-container>
+            <ng-template #imageTemplate>
+              <img class="media" [src]="config.fichier" alt="Média">
+            </ng-template>
+          </div>
+        </div>
+        <!-- Colonne d'infos (20% de la largeur) -->
+        <div class="info-vertical">
+          <div class="info-item"><strong>Marque :</strong> {{ config.marque }}</div>
+          <div class="info-item"><strong>Modèle :</strong> {{ config.modele }}</div>
+          <div class="info-item"><strong>Prix :</strong> {{ config.prix | currency }}</div>
+          <div class="info-item">
+            <strong>Spécifications :</strong>
+            <div class="specs">
+              <div *ngIf="config.os"><strong>OS :</strong> {{ config.os }}</div>
+              <div *ngIf="config.osModele"><strong>Modèle OS :</strong> {{ config.osModele }}</div>
+              <div *ngIf="config.processeur"><strong>Processeur :</strong> {{ config.processeur }}</div>
+              <div *ngIf="config.ram"><strong>RAM :</strong> {{ config.ram }}</div>
+              <div *ngIf="config.stockage"><strong>Stockage :</strong> {{ config.stockage }}</div>
+              <div *ngIf="config.tailleEcran"><strong>Taille écran :</strong> {{ config.tailleEcran }}</div>
+              <div *ngIf="config.carteGraphique"><strong>Carte graphique :</strong> {{ config.carteGraphique }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partie inférieure (20% de la hauteur) -->
+      <div class="bottom-section">
+        <!-- Cas d'usages affichés de gauche à droite -->
+        <div class="usage-types">
+          <span *ngFor="let usage of config.usage" class="usage-item">
+            {{ usage }}
+          </span>
+        </div>
+        <!-- Indice de réparabilité -->
+        <div class="repair-index">
+          <strong>Indice de réparabilité :</strong> {{ config.indiceReparabilite }}
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Template d'attente -->
+  <ng-template #loading>
+    <div class="loading">Chargement de la configuration...</div>
+  </ng-template>

@@ -1,0 +1,135 @@
+<form [formGroup]="configForm" (ngSubmit)="onSubmit()" class="config-form">
+    <mat-card appearance="outlined">
+        <mat-card-header>
+            <mat-card-title><h3>Configuration de l'appareil</h3></mat-card-title>
+        </mat-card-header>
+      <mat-card-content>
+        <div class="form-content">
+            <div class="form-row">
+                <!-- Marque -->
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Marque *</mat-label>
+                  <input matInput placeholder="Entrer la marque" formControlName="marque">
+                  <mat-error *ngIf="configForm.get('marque')?.hasError('required')">
+                    La marque est obligatoire.
+                  </mat-error>
+                </mat-form-field>
+      
+                <!-- Modèle -->
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Modèle *</mat-label>
+                  <input matInput placeholder="Entrer le modèle" formControlName="modele">
+                  <mat-error *ngIf="configForm.get('modele')?.hasError('required')">
+                    Le modèle est obligatoire.
+                  </mat-error>
+                </mat-form-field>
+      
+                <!-- Prix -->
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Prix *</mat-label>
+                  <input matInput type="number" placeholder="Entrer le prix" formControlName="prix">
+                  <mat-error *ngIf="configForm.get('prix')?.hasError('required')">
+                    Le prix est obligatoire.
+                  </mat-error>
+                  <mat-error *ngIf="configForm.get('prix')?.hasError('pattern')">
+                    Le prix doit être un nombre valide.
+                  </mat-error>
+                </mat-form-field>
+            </div>
+      
+            <!-- Spécifications -->
+            <h3>Spécifications</h3>
+      
+            <div class="form-row">
+                <!-- OS -->
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>OS</mat-label>
+                  <mat-select formControlName="os">
+                    <mat-option [value]="null">Aucun</mat-option>
+                    <mat-option *ngFor="let option of osOptions" [value]="option.value">
+                      {{ option.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+      
+                <!-- Modèle de l'OS -->
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Modèle de l'OS</mat-label>
+                  <input matInput placeholder="Entrer le modèle de l'OS" formControlName="osModele">
+                </mat-form-field>
+            </div>
+
+            <div class="form-row">
+      
+                <!-- Processeur -->
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Processeur</mat-label>
+                  <input matInput placeholder="Entrer le processeur" formControlName="processeur">
+                </mat-form-field>
+          
+                <!-- RAM -->
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>RAM</mat-label>
+                  <input matInput placeholder="Entrer la RAM" formControlName="ram">
+                </mat-form-field>
+          
+                <!-- Stockage -->
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Stockage</mat-label>
+                  <input matInput placeholder="Entrer le stockage" formControlName="stockage">
+                </mat-form-field>
+          
+                <!-- Taille de l'écran -->
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Taille de l'écran</mat-label>
+                  <input matInput placeholder="Entrer la taille de l'écran" formControlName="tailleEcran">
+                </mat-form-field>
+          
+                <!-- Carte graphique -->
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Carte graphique</mat-label>
+                  <input matInput placeholder="Entrer la carte graphique" formControlName="carteGraphique">
+                </mat-form-field>
+            </div>
+
+            <div class="form-row">
+      
+                <!-- Indice de réparabilité -->
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Indice de réparabilité</mat-label>
+                  <input matInput type="number" placeholder="Entrer l'indice de réparabilité" formControlName="indiceReparabilite">
+                  <mat-error *ngIf="configForm.get('indiceReparabilite')?.hasError('pattern')">
+                    L'indice de réparabilité doit être un nombre valide.
+                  </mat-error>
+                </mat-form-field>
+          
+                <!-- Type d'usage -->
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Type d'usage</mat-label>
+                  <mat-select formControlName="usage" multiple>
+                    <mat-option *ngFor="let option of usageOptions" [value]="option.value">
+                      {{ option.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+      
+            <!-- Spécifications -->
+            <h3>Publicité</h3>
+            <!-- Fichier vidéo ou photo -->
+            <div class="full-width">
+                <label for="file-upload">Fichier vidéo ou photo *</label>
+                <input id="file-upload" type="file" (change)="onFileChange($event)" required>
+                <mat-error *ngIf="configForm.get('fichier')?.hasError('required')">
+                    Ce champ est obligatoire.
+                </mat-error>
+            </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" type="submit">Enregistrer la configuration</button>
+        <button mat-raised-button color="accent" type="button" (click)="displayConfig()">Afficher la configuration</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

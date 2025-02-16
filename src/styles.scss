@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #121212; // Fond sombre
+    color: #ffffff; // Texte clair
+  }
+  
+  .mat-card, .mat-form-field, .mat-select-panel {
+    color: white !important;
+  }
+  
+  .mat-form-field-label {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+  
+  .mat-input-element {
+    color: white !important;
+    caret-color: white;
+  }
+  
+  .mat-select-value {
+    color: white !important;
+  }
+  
+  .mat-form-field-underline {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+  }
+  
+  .mat-form-field-ripple {
+    background-color: white !important;
+  }
+  
+  mat-error {
+    color: #ff5252 !important; // Texte des erreurs en rouge visible
+  }
