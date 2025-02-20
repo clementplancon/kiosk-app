@@ -10,7 +10,7 @@
     "test": "ng test",
     "electron": "npm run build && electron .",
     "build:win": "npm run build && electron-builder --win",
-    "build:mac": "npm run build && electron-builder --macc"
+    "build:mac": "npm run build && electron-builder --mac"
   },
   "build": {
     "appId": "com.mondomaine.kiosk-app",
