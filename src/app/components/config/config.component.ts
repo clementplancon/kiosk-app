@@ -36,10 +36,11 @@ export class ConfigComponent implements OnInit {
 
   // Options pour le champ "Type d'usage" (liste à choix multiple)
   usageOptions = [
-    { value: 'navigation', viewValue: 'Navigation Web' },
-    { value: 'bureautique', viewValue: 'Bureautique' },
-    { value: 'gaming', viewValue: 'Gaming' },
-    { value: 'montage', viewValue: 'Montage' },
+    { value: 'Navigation Web', viewValue: 'Navigation Web' },
+    { value: 'Bureautique', viewValue: 'Bureautique' },
+    { value: 'Gaming', viewValue: 'Gaming' },
+    { value: 'Montage', viewValue: 'Montage' },
+    { value: 'Streaming', viewValue: 'Streaming' },
     // Vous pouvez ajouter d'autres options si nécessaire
   ];
 

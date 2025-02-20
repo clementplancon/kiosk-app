@@ -37,4 +37,15 @@ export class DisplayComponent implements OnInit {
     // Vérifier si la Data URL indique une vidéo
     return this.config.fichier.startsWith('data:video');
   }
+
+  get intPartPrice(): string {
+    return `${Math.floor(this.config?.prix ?? 0)}€`;
+  }
+
+  get decimalPartPrice(): string {
+    const stringPrice = `${this.config?.prix ?? 0}`;
+    const decimalPart = stringPrice.split('.')[1];
+    return decimalPart ?? '00';
+  }
+
 }

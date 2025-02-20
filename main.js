@@ -28,6 +28,15 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+  // Configure l'application pour se lancer au démarrage
+  app.setLoginItemSettings({
+    openAtLogin: true,
+    // 'process.execPath' permet d'utiliser le chemin de l'exécutable de l'application
+    path: process.execPath,
+    // Vous pouvez ajouter des arguments si nécessaire :
+    args: []
+  });
+
   createWindow();
 
   app.on('activate', () => {

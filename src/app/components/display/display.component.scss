@@ -5,24 +5,30 @@
         display: flex;
         flex-direction: column;
         overflow: hidden;
+        background: rgb(255,189,130);
+        background: linear-gradient(131deg, rgba(255,189,130,1) 0%, rgba(209,72,0,1) 100%);
       }
       /* Partie supérieure (80% de la hauteur) */
       .top-section {
-        flex: 0 0 70%;
+        flex: 0 0 80%;
+        max-height: 80vh;
         display: flex;
         width: 100%;
       }
       /* Zone média : occupe 80% de la largeur du top-section et centre son contenu */
       .media-area {
-        flex: 0 0 70%;
+        flex: 0 0 80%;
+        max-width: 80vw;
+        max-height: 80vh;
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: black;
       }
       /* Container du média : limite à 80% de largeur et hauteur, tout en centrant le média */
       .media-container {
-        max-width: 70%;
-        max-height: 70%;
+        max-width: 80vw;
+        max-height: 80vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -37,44 +43,71 @@
       }
       /* Colonne d'infos (20% de la largeur) */
       .info-vertical {
-        flex: 0 0 30%;
-        background: rgba(255,255,255,0.9);
-        padding: 10px;
+        flex: 0 0 20%;
+        padding: 30px 10px;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: flex-start;
+        align-items: center;
         box-sizing: border-box;
       }
       .info-item {
         margin-bottom: 10px;
       }
-      .specs > div {
-        margin-left: 10px;
-        margin-bottom: 5px;
+      .info-item-price {
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+      .price-int-part {
+        font-size: 7vh;
+        font-weight: 600;
+      }
+      .price-decimal-part {
+        font-size: 4.5vh;
+        font-weight: 500;
+      }
+      .specs-infos {
+        font-size: 2vh;
+        font-weight: 500;
       }
       /* Partie inférieure (20% de la hauteur) */
       .bottom-section {
-        flex: 0 0 30%;
+        flex: 0 0 20%;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         padding: 10px;
-        background: rgba(240,240,240,0.9);
         box-sizing: border-box;
       }
       .usage-types {
+        margin: auto;
         display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
         gap: 10px;
         flex-wrap: wrap;
+        width: 20vw;
       }
       .usage-item {
-        background: #e0e0e0;
         padding: 5px 10px;
         border-radius: 5px;
+        background-color: white;
+        color: rgba(209,72,0,1);
+        border-radius: 50px;
+        font-size: 1.5vh;
+        font-weight: 600;
+        padding: 7px 15px;
       }
       .repair-index {
+        margin: auto;
         font-size: 1.2em;
-        font-weight: bold;
+        font-weight: 500;
+        width: 20vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
       }
       .loading {
         width: 100vw;
