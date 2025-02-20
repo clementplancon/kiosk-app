@@ -24,7 +24,7 @@ function createWindow() {
   mainWindow.loadFile(path.join(__dirname, 'dist/kiosk-app/browser/index.html'));
 
   // Ouvre les DevTools (optionnel, utile en développement)
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
