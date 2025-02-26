@@ -97,7 +97,7 @@
                 <!-- Indice de réparabilité -->
                 <mat-form-field appearance="fill" class="full-width">
                   <mat-label>Indice de réparabilité</mat-label>
-                  <input matInput type="number" placeholder="Entrer l'indice de réparabilité" formControlName="indiceReparabilite">
+                  <input matInput type="number" placeholder="Entrer l'indice de réparabilité" formControlName="indiceReparabilite" min="0" max="10" step="0.1">
                   <mat-error *ngIf="configForm.get('indiceReparabilite')?.hasError('pattern')">
                     L'indice de réparabilité doit être un nombre valide.
                   </mat-error>
