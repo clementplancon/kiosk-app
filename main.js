@@ -1,11 +1,13 @@
 // main.js
-const { app, BrowserWindow, globalShortcut, ipcMain } = require('electron');
+const { app, BrowserWindow, globalShortcut, ipcMain, powerMonitor } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
+let mainWindow
+
 function createWindow() {
   // Crée la fenêtre du navigateur.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
     fullscreen: true,  // Mode plein écran
@@ -38,6 +40,15 @@ app.whenReady().then(() => {
   });
 
   createWindow();
+
+  // Surveille la reprise du système
+  powerMonitor.on('resume', () => {
+    console.log('Le système vient de sortir de veille.');
+    // Envoie un message à la partie renderer pour relancer la vidéo
+    if (mainWindow) {
+      mainWindow.webContents.send('system-resumed');
+    }
+  });
 
   app.on('activate', () => {
     // Sur macOS, recréer une fenêtre si aucune n'est ouverte

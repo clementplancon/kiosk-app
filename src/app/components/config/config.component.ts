@@ -27,6 +27,7 @@ import { Router } from '@angular/router';
 })
 export class ConfigComponent implements OnInit {
   configForm: FormGroup;
+  filePreview: string | null = null;
 
   // Options pour le champ OS (liste nullable)
   osOptions = [
@@ -78,6 +79,10 @@ export class ConfigComponent implements OnInit {
           // Vous pouvez, par exemple, stocker et afficher le chemin du fichier dans une autre variable ou un label.
           const { fichier, ...autresChamps } = config;
           this.configForm.patchValue(autresChamps);
+          if (fichier) {
+            // Affecter filePreview pour afficher la miniature
+            this.filePreview = fichier;
+          }
           // Vous pouvez aussi gérer l'affichage d'un message indiquant que le fichier était déjà sélectionné.
           console.log('Configuration chargée :', config);
         }
@@ -92,8 +97,10 @@ export class ConfigComponent implements OnInit {
       const file = input.files[0];
       const reader = new FileReader();
       reader.onload = () => {
-        const base64Data = reader.result; // Ce sera une string en Data URL
+        const base64Data = reader.result as string; // Ce sera une string en Data URL
         this.configForm.patchValue({ fichier: base64Data });
+        // Stocker la Data URL pour l'affichage de la miniature
+        this.filePreview = base64Data;
       };
       reader.readAsDataURL(file);
     }
@@ -141,5 +148,11 @@ export class ConfigComponent implements OnInit {
         console.error('Erreur lors du chargement de la configuration :', error);
         alert("Une erreur est survenue lors du chargement de la configuration.");
       });
+  }
+  
+  // Méthode utilitaire pour déterminer si le fichier est une vidéo à partir de la Data URL
+  get isVideoPreview(): boolean {
+    if (!this.filePreview) return false;
+    return this.filePreview.startsWith('data:video');
   }
 }

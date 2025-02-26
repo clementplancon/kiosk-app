@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-display',
@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './display.component.html',
   styleUrl: './display.component.scss'
 })
-export class DisplayComponent implements OnInit {
+export class DisplayComponent implements OnInit, AfterViewInit {
   // Variable qui contiendra la configuration chargée depuis le fichier local
   config: any = null;
 
@@ -25,6 +25,21 @@ export class DisplayComponent implements OnInit {
         }
       })
       .catch((error: any) => console.error('Erreur lors du chargement de la configuration :', error));
+  }
+
+  ngAfterViewInit(): void {
+    // Abonnez-vous à l'événement 'system-resumed' via l'API exposée
+    if (window.myAPI && window.myAPI.onSystemResumed) {
+      window.myAPI.onSystemResumed(() => {
+        console.log('Message reçu: système réveillé');
+        const videoElement = document.querySelector('video') as HTMLVideoElement;
+        if (videoElement) {
+          // Recharge le média puis lance la lecture
+          videoElement.load();
+          videoElement.play().catch(err => console.error('Erreur lors du démarrage de la vidéo après réveil :', err));
+        }
+      });
+    }
   }
 
   /**

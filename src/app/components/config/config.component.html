@@ -118,11 +118,22 @@
             <h3>Publicité</h3>
             <!-- Fichier vidéo ou photo -->
             <div class="full-width">
-                <label for="file-upload">Fichier vidéo ou photo *</label>
-                <input id="file-upload" type="file" (change)="onFileChange($event)" required>
-                <mat-error *ngIf="configForm.get('fichier')?.hasError('required')">
-                    Ce champ est obligatoire.
-                </mat-error>
+              <label for="file-upload">Fichier vidéo ou photo *</label>
+              <input id="file-upload" type="file" (change)="onFileChange($event)" required>
+              <!-- Afficher le message d'erreur uniquement s'il n'y a pas de miniature -->
+              <mat-error *ngIf="!filePreview && configForm.get('fichier')?.hasError('required')">
+                Ce champ est obligatoire.
+              </mat-error>
+              
+              <!-- Afficher la miniature si filePreview existe -->
+              <div *ngIf="filePreview" class="file-preview">
+                <ng-container *ngIf="isVideoPreview; else imagePreview">
+                  <video [src]="filePreview" controls style="max-width: 200px; max-height: 200px;"></video>
+                </ng-container>
+                <ng-template #imagePreview>
+                  <img [src]="filePreview" alt="Aperçu" style="max-width: 200px; max-height: 200px;">
+                </ng-template>
+              </div>
             </div>
         </div>
       </mat-card-content>
