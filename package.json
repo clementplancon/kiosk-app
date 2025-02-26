@@ -28,7 +28,15 @@
       "target": "nsis"
     },
     "mac": {
-      "target": "dmg"
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ]
     }
   },
   "private": true,
