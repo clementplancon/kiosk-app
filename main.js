@@ -46,6 +46,12 @@ app.whenReady().then(() => {
     console.log('Le système vient de sortir de veille.');
     // Envoie un message à la partie renderer pour relancer la vidéo
     if (mainWindow) {
+      // Pour certains cas, il est utile de désactiver puis réactiver le mode kiosk
+      mainWindow.setKiosk(false);
+      mainWindow.setKiosk(true);
+      // Forcer la fenêtre à être en avant
+      mainWindow.focus();
+      mainWindow.setAlwaysOnTop(true);
       mainWindow.webContents.send('system-resumed');
     }
   });
